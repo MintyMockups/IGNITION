@@ -98,7 +98,7 @@
         /* GLASS MODAL */
         .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); display: flex; align-items: center; justify-content: center; z-index: 3000; }
         .modal-content { 
-            background: rgba(15, 15, 15, 0.9); backdrop-filter: blur(25px);
+            background: rgba(15, 15, 15, 0.95); backdrop-filter: blur(25px);
             padding: 40px; border-radius: 24px; width: 90%; max-width: 400px; 
             border: 1px solid rgba(255,255,255,0.1); text-align: center;
         }
@@ -162,25 +162,33 @@
         <button class="btn-buy" id="p-buy" style="width:auto; padding:10px 30px; border-radius: 8px;">ORDER</button>
     </div>
 
-   <!-- FORMSPREE EMAIL SYSTEM -->
-<form action="https://formspree.io/f/mojndeba" method="POST">
-    
-    <!-- 1. Hidden Subject Line (So you know what they ordered in your email) -->
-    <input type="hidden" name="_subject" value="New Beat Order Request!" />
+   <!-- MODAL AND FORM (FIXED: NOW NESTED CORRECTLY) -->
+   <div id="order-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="order-item-title" style="font-family: 'Outfit'; margin-bottom: 10px;">Order</h2>
+            <p style="font-size: 0.85rem; color: #888; margin-bottom: 25px;">Enter details to receive the payment link via email.</p>
+            
+            <!-- FORMSPREE EMAIL SYSTEM -->
+            <form action="https://formspree.io/f/mojndeba" method="POST">
+                
+                <!-- 1. Hidden Subject Line -->
+                <input type="hidden" name="_subject" value="New Beat Order Request!" />
 
-    <!-- 2. Hidden Item Name (Injected by JS) -->
-    <input type="hidden" name="item_name" id="form-item-name">
+                <!-- 2. Hidden Item Name -->
+                <input type="hidden" name="item_name" id="form-item-name">
 
-    <!-- 3. Customer Details -->
-    <input type="text" name="name" placeholder="Full Name" required>
-    <input type="email" name="email" placeholder="Email Address" required>
+                <!-- 3. Customer Details -->
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
 
-    <!-- 4. Send Button -->
-    <button type="submit" class="btn-buy" style="width:100%; margin-top:15px; padding:16px; font-weight: 900; border-radius: 10px;">SEND REQUEST</button>
-    
-    <!-- 5. Close Button -->
-    <button type="button" onclick="closeModal()" style="background:none; border:none; color:#555; width:100%; margin-top:20px; cursor:pointer; font-weight: 600; font-size: 0.8rem;">CLOSE</button>
-</form>
+                <!-- 4. Send Button -->
+                <button type="submit" class="btn-buy" style="width:100%; margin-top:15px; padding:16px; font-weight: 900; border-radius: 10px;">SEND REQUEST</button>
+                
+                <!-- 5. Close Button -->
+                <button type="button" onclick="closeModal()" style="background:none; border:none; color:#555; width:100%; margin-top:20px; cursor:pointer; font-weight: 600; font-size: 0.8rem;">CLOSE</button>
+            </form>
+        </div>
+    </div>
 
     <audio id="audio-player"></audio>
 
